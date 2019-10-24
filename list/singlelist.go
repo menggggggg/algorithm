@@ -27,7 +27,7 @@ func Reverse(head *Node) *Node {
 		return nil
 	}
 
-	left := new(Node)
+	var left *Node
 	current := head
 	right := head.next
 
