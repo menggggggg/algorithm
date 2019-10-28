@@ -1,12 +1,7 @@
 package main
 
-import (
-	"fmt"
-
-	"github.com/menggggggg/algorithm/list"
-)
-
 func main() {
+	/*   list
 	n5 := list.New("5", nil)
 	n4 := list.New("4", n5)
 	n3 := list.New("3", n4)
@@ -19,4 +14,19 @@ func main() {
 		new = new.Next()
 	}
 	fmt.Println()
+	*/
+
+	/* string to int
+	s := "-567899"
+	i, err := stringint.StringToInt(s)
+	if err != nil {
+		fmt.Println("err = ", err)
+	}
+	fmt.Println(reflect.TypeOf(i), " ", i)
+
+	ss := stringint.IntToString(3245)
+	fmt.Println(reflect.TypeOf(ss), " ", ss)
+	*/
+	
+
 }
