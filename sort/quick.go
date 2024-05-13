@@ -40,3 +40,32 @@ func adjustArray(array []int, left, right int) int {
 	array[i] = x
 	return i
 }
+
+func QuickSortV2(nums []int) {
+	if len(nums) == 0 {
+		return
+	}
+	var quickSort func(num []int, left, right int)
+	quickSort = func(num []int, left, right int) {
+		if left >= right {
+			return
+		}
+		povit := num[(left+right)/2]
+		i, j := left, right
+		for {
+			for num[i] < povit {
+				i++
+			}
+			for num[j] > povit {
+				j--
+			}
+			if i >= j {
+				break
+			}
+			num[i], num[j] = num[j], num[i]
+		}
+		quickSort(num, left, i-1)
+		quickSort(num, j+1, right)
+	}
+	quickSort(nums, 0, len(nums)-1)
+}
