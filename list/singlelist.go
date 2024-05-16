@@ -1,59 +1,49 @@
 package list
 
-// Node 节点
-type Node struct {
-	data interface{}
-	next *Node
+type ListNode struct {
+	Val  int
+	Next *ListNode
 }
 
-// New ...
-func New(data interface{}, next *Node) *Node {
-	return &Node{data: data, next: next}
-}
+// 反转链表
+// https://leetcode.cn/problems/reverse-linked-list/
 
-// Data ...
-func (n *Node) Data() interface{} {
-	return n.data
-}
-
-// Next ...
-func (n *Node) Next() *Node {
-	return n.next
-}
-
-// Reverse ...
-func Reverse(head *Node) *Node {
+func ReverseList(head *ListNode) *ListNode {
 	if head == nil {
 		return nil
 	}
+	var pre *ListNode
 
-	var left *Node
-	current := head
-	right := head.next
-
-	for right != nil {
-		current.next = left
-		temp := right.next
-		right.next = current
-		left = current
-		current = right
-		right = temp
+	for cur := head; cur != nil; {
+		temp := cur.Next
+		cur.Next = pre
+		pre = cur
+		cur = temp
 	}
-	return current
+	return pre
 }
 
-// HasCycel ...
-func HasCycel(head *Node) bool {
-	if head == nil || head.Next() == nil {
-		return false
+// 两两交换链表中的节点
+// https://leetcode.cn/problems/swap-nodes-in-pairs/description/
+func SwapPairs(head *ListNode) *ListNode {
+	// 使用虚头节点
+	if head == nil {
+		return nil
 	}
-	l1, l2 := head, head.Next()
-	for l1 != nil || l2 != nil || l2.Next() != nil {
-		if l1 == l2 {
-			return true
+	dummyNode := &ListNode{
+		Next: head,
+	}
+	newHead := dummyNode
+	for {
+		if dummyNode.Next == nil || dummyNode.Next.Next == nil {
+			break
 		}
-		l1 = l1.Next()
-		l2 = l2.Next().Next()
+		n1, n2 := dummyNode.Next, dummyNode.Next.Next
+		dummyNode.Next = n2
+		n1.Next = n2.Next
+		n2.Next = n1
+		// 更换虚节点
+		dummyNode = n1
 	}
-	return false
+	return newHead.Next
 }
