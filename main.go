@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/menggggggg/algorithm/stack"
+	"github.com/menggggggg/algorithm/tree"
 )
 
 func main() {
@@ -33,12 +33,24 @@ func main() {
 	// 	fmt.Print(tmp.Val)
 	// 	fmt.Print(" ")
 	// }
-	stack := stack.NewStack()
-	stack.Push(1)
-	stack.Push(2)
-	stack.Push(3)
-	fmt.Println(stack.Pop())
-	fmt.Println(stack.Pop())
-	fmt.Println(stack.Pop())
+	// stack := stack.NewStack()
+	// stack.Push(1)
+	// stack.Push(2)
+	// stack.Push(3)
+	// fmt.Println(stack.Pop())
+	// fmt.Println(stack.Pop())
+	// fmt.Println(stack.Pop())
 
+	node3 := &tree.TreeNode{
+		Value: 3,
+	}
+	node2 := &tree.TreeNode{
+		Value: 2,
+	}
+	node := &tree.TreeNode{
+		Value: 1,
+		Left:  node2,
+		Right: node3,
+	}
+	fmt.Println(tree.LevelOrder(node))
 }
